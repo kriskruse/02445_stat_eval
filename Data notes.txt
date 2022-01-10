@@ -1,2 +1,16 @@
 Funny data located in
 eksperiment 5, person 2, gentagelse 7
+
+
+Test vi kan prøve
+finde den gennesnitlige linje og finde de enkeltes forsøgs gennesnitlige afvigelse til denne
+qq-plot, hitsogram
+evt noget anova
+
+plot linjerne i 2d 
+evt kigge på eks,1,2,3
+
+kigge på en persons bevægelse i alle eksperimenterne.
+
+
+
