@@ -28,7 +28,7 @@ surface3d(c(-7, 67), c(-20, 20), matrix(0, 2, 2), col = "brown", alpha = 0.9, sp
 
 
 fav <- c("red", "green", "blue", "magenta", "yellow", "black", "gray", "orange", "pink", "darkolivegreen4")
-for (x in 3){
+for (x in 5){
   for (y in 1:10){
     for (z in 1:10) {
       lines3d(armdata[[x]][[y]][[z]], col = fav[y])

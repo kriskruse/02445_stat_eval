@@ -3,8 +3,13 @@ import rpy2.robjects as robjects
 import numpy as np
 import pyreadr as pr
 
+
 robjects.r['load']("armdata.RData")
 matrix = robjects.r["armdata"]
 
 armdata = np.array(matrix)
+
+t = np.argwhere(np.isnan(armdata))
+
+print(t)
 
