@@ -12,37 +12,28 @@ armdata <- get(load(file = "armdata.RData"))
 
 
 
+rgl.open()
 start_cyl <- cylinder3d(cbind(0, 0, seq(0, 10, length = 10)), radius = c(3,3,3), sides = 20, closed = -2)
 target_cyl <- cylinder3d(cbind(60, 0, seq(0, 10, length = 10)), radius = c(3,3,3), sides = 20, closed = -2)
 cyl1 <- cylinder3d(cbind(0, 0, 10 + seq(0, 12.5, length = 10)), radius = c(3,3,3), sides = 20, closed = -2)
 cyl2 <- cylinder3d(cbind(60, 0, 10 + seq(0, 12.5, length = 10)), radius = c(3,3,3), sides = 20, closed = -2)
 cyl3 <- cylinder3d(cbind(30, 0, seq(0, 20, length = 10)), radius = c(3,3,3), sides = 10, closed = -2)
 shade3d(addNormals(subdivision3d(start_cyl)), col = 'darkgreen')
-shade3d(addNormals(subdivision3d(target_cyl)), col = 'darkgreen')
+shade3d(addNormals(subdivision3d(target_cyl)), col = 'darkgreen', alpha = 0.5) # Slut
 shade3d(addNormals(subdivision3d(cyl1)), col = 'pink')
-shade3d(addNormals(subdivision3d(cyl2)), col = 'pink', alpha = 0.5)
+shade3d(addNormals(subdivision3d(cyl2)), col = 'pink', alpha = 0.5) # slut
 shade3d(addNormals(subdivision3d(cyl3)), col = 'lightblue')
 surface3d(c(-7, 67), c(-20, 20), matrix(0, 2, 2), col = "brown", alpha = 0.9, specular = "black")
 
 
 
-idx_curves <- list(
-  c(1, 1, 1),
-  c(1, 1, 2),
-  c(1, 1, 3),
-  c(1, 1, 4),
-  c(1, 1, 5),
-  c(1, 1, 6),
-  c(1, 1, 7),
-  c(1, 1, 8),
-  c(1, 1, 9),
-  c(1, 1, 10)
-)
-
-
-for (idx in idx_curves) {
-  lines3d(armdata[[idx[[1]]]][[idx[[2]]]][[idx[[3]]]])
+fav <- c("red", "green", "blue", "magenta", "yellow", "black", "gray", "orange", "pink", "darkolivegreen4")
+for (x in 3){
+  for (y in 1:10){
+    for (z in 1:10) {
+      lines3d(armdata[[x]][[y]][[z]], col = fav[y])
+    }
+  }
 }
-
 
 

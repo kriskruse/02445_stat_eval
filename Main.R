@@ -22,7 +22,16 @@ for (item in armdata){
 # for these access them with "eks1$per1[1]" for rep 1
 
 
+
 #### Fancy shit under here
+
+append(eks1$per1[[1]], "*")
+for (i in 1:10){
+  which(eks1$per1[i] == "*", arr.ind = TRUE )
+}
+
+
+which(eks1$per1[[1]] == "*", arr.ind = TRUE)
 
 
 
