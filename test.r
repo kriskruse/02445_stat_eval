@@ -30,14 +30,14 @@ surface3d(c(-7, 67), c(-20, 20), matrix(0, 2, 2), col = "brown", alpha = 0.9, sp
 s = 20
 m = 27.5
 t = 30
-size = t
+size = s
 # Obstacle
 cyl3 <- cylinder3d(cbind(15, 0, seq(0, size, length = 10)), radius = c(3,3,3), sides = 10, closed = -2)
 shade3d(addNormals(subdivision3d(cyl3)), col = 'lightblue')
 
 
 fav <- c("red", "green", "blue", "magenta", "yellow", "black", "gray", "orange", "pink", "darkolivegreen4")
-for (x in 13){
+for (x in 1){
   for (y in 1:10){
     for (z in 1:10) {
       lines3d(armdata[[x]][[y]][[z]], col = fav[y])
@@ -47,7 +47,29 @@ for (x in 13){
 
 
 
+xval <- c()
+yval <- c()
+zval <- c()
 
+for (x in 1:16) {
+  for (y in 1:10) {
+    for (z in 1:10) {
+      xval <- c(xval, armdata[[x]][[y]][[z]][1,1])
+      yval <- c(xval, armdata[[x]][[y]][[z]][1,2])
+      zval <- c(xval, armdata[[x]][[y]][[z]][1,3])
+    }
+  }
+  print(length(xval))
+  qqnorm(xval)
+  qqnorm(yval)
+  qqnorm(zval)
+  qqline(xval, col = "steelblue", lwd = 2)
+  qqline(yval, col = "red", lwd = 2)
+  qqline(zval, col = "magenta", lwd = 2)
+  xval <- c()
+  yval <- c()
+  zval <- c()
+}
 
 
 

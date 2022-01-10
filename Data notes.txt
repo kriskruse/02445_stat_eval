@@ -2,6 +2,8 @@ Funny data located in
 eksperiment 5, person 2, gentagelse 7
 
 
+
+
 Test vi kan prøve
 finde den gennesnitlige linje og finde de enkeltes forsøgs gennesnitlige afvigelse til denne
 qq-plot, hitsogram
