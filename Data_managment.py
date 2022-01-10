@@ -1,7 +1,5 @@
-import pandas as pd
 import rpy2.robjects as robjects
 import numpy as np
-import pyreadr as pr
 
 
 def main():
