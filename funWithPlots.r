@@ -5,10 +5,8 @@ library(grid)
 library(rgl)
 library(robustsHD)
 
-is.na(armdata)
-
 ############### data load
-armdata <- get(load(file = "armdata.RData"))
+armdata <- get(load(file = "fixedarmdata.RData"))
 ## access with armdata
 
 
