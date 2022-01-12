@@ -2,6 +2,7 @@
 # if needed
 library(abind)
 library(dplyr)
+library(rgl)
 require(pracma)
 
 
@@ -131,3 +132,39 @@ Lx <- lm(mean_xauc ~ person, data = df_mean_auc)
 anova(Lx)
 drop1(Lx, test = "F")
 
+#testing the effect of person in one experiment with all samples included
+exp_1<-df_auc[1:100,]
+exp_1$persid  <- as.factor(exp_1$persid)
+exp_1$repeid   <- as.factor(exp_1$persid)
+
+one.way <- aov(xauc ~ persid , data = exp_1)
+
+anova(one.way)
+
+###
+#trying to see if the area under the curve varies between the experiments. 
+mean_pr_experimentx<-c()
+mean_pr_experimenty<-c()
+mean_pr_experimentz<-c()
+for (experimentNum in 1:16){
+    temp_df<-df_mean_auc[df_mean_auc$experiment == experimentNum, ]
+    mean_pr_experimentx<-c(mean_pr_experimentx,mean(temp_df$mean_xauc))
+    mean_pr_experimenty<-c(mean_pr_experimenty,mean(temp_df$mean_yauc))
+    mean_pr_experimentz<-c(mean_pr_experimentz,mean(temp_df$mean_zauc))
+}
+
+hist(mean_pr_experimentx)
+hist(mean_pr_experimenty)
+hist(mean_pr_experimentz)
+
+#idea behind the following is to see if the different experiments are distinguishable in 3-d space. 
+
+### Plotting the average of x,y,z area for each experiment. 
+rgl.open() # Open a new RGL device
+rgl.points(mean_pr_experimentx, mean_pr_experimenty, mean_pr_experimentz, color ="lightgray") # Scatter plot
+rgl.bbox(color = "#333377") # Add bounding box decoration
+
+### Plotting all the 160 observations in 3d by xarea,yarea and zarea. 
+rgl.open() # Open a new RGL device
+rgl.points(df_mean_auc$mean_xauc, df_mean_auc$mean_yauc, df_mean_auc$mean_zauc, color ="lightgray") # Scatter plot
+rgl.bbox(color = "#333377") # Add bounding box decoration
