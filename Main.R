@@ -3,6 +3,7 @@
 library(abind)
 library(dplyr)
 library(rgl)
+library(caret)
 require(pracma)
 
 
@@ -168,3 +169,48 @@ rgl.bbox(color = "#333377") # Add bounding box decoration
 rgl.open() # Open a new RGL device
 rgl.points(df_mean_auc$mean_xauc, df_mean_auc$mean_yauc, df_mean_auc$mean_zauc, color ="lightgray") # Scatter plot
 rgl.bbox(color = "#333377") # Add bounding box decoration
+
+
+# density plots for each attribute by class value
+xvariables<-df_mean_auc[,3:5]
+yvariables<-df_mean_auc$experiment
+scales <- list(x=list(relation="free"), y=list(relation="free"))
+featurePlot(x=xvariables, y=yvariables, plot="density", scales=scales)
+
+
+
+### the following is taken from
+#https://machinelearningmastery.com/machine-learning-in-r-step-by-step
+
+#This part is just copy paste but to see if I could get some results. Would 
+#prefer to python instead. Best model has mean accuracy of 34%
+
+dataset = subset(df_mean_auc, select = -c(person) )
+
+
+
+# Run algorithms using 10-fold cross validation
+control <- trainControl(method="cv", number=10)
+metric <- "Accuracy"
+
+# a) linear algorithms
+set.seed(7)
+fit.lda <- train(experiment~., data=dataset, method="lda", metric=metric, trControl=control)
+# b) nonlinear algorithms
+# CART
+set.seed(7)
+fit.cart <- train(experiment~., data=dataset, method="rpart", metric=metric, trControl=control)
+# kNN
+set.seed(7)
+fit.knn <- train(experiment~., data=dataset, method="knn", metric=metric, trControl=control)
+# c) advanced algorithms
+# SVM
+set.seed(7)
+fit.svm <- train(experiment~., data=dataset, method="svmRadial", metric=metric, trControl=control)
+# Random Forest
+set.seed(7)
+fit.rf <- train(experiment~., data=dataset, method="rf", metric=metric, trControl=control)
+
+# summarize accuracy of models
+results <- resamples(list(lda=fit.lda, cart=fit.cart, knn=fit.knn, svm=fit.svm, rf=fit.rf))
+summary(results)
