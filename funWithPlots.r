@@ -31,4 +31,58 @@ for (expNum in 1:16) {
 }
 
 
+xauc <- c()
+yauc <- c()
+zauc <- c()
+expid = c()
+persid = c()
+repeid = c()
+mean_xauc <- c()
+mean_yauc <- c()
+mean_zauc <- c()
+for (expe in 1:16) {
+  for (pers in 1:10) {
+    for (repe in 1:10) {
+      xauc <- c(xauc,trapz(1:100,armdata[[expe]][[pers]][[repe]][,1]))
+      yauc <- c(yauc,trapz(1:100,armdata[[expe]][[pers]][[repe]][,2]))
+      zauc <- c(zauc,trapz(1:100,armdata[[expe]][[pers]][[repe]][,3]))
+      expid = c(expid, expe)
+      persid = c(persid, pers)
+      repeid = c(repeid, repe)
+    }
+    mean_xauc <- c(mean_xauc,mean(xauc[-10]))
+    mean_yauc <- c(mean_yauc,mean(yauc))
+    mean_zauc <- c(mean_zauc,mean(zauc))
+  }
+}
+
+xauc <- c()
+yauc <- c()
+zauc <- c()
+expid = c()
+persid = c()
+repeid = c()
+mean_xauc <- c()
+mean_yauc <- c()
+mean_zauc <- c()
+for (expe in 1:16) {
+  for (pers in 1:10) {
+    xval =c()
+    yval =c()
+    zval =c()
+    for (repe in 1:10) {
+      xval <- c(xval,trapz(1:100,armdata[[expe]][[pers]][[repe]][,1]))
+      yval <- c(yval,trapz(1:100,armdata[[expe]][[pers]][[repe]][,2]))
+      zval <- c(zval,trapz(1:100,armdata[[expe]][[pers]][[repe]][,3]))
+      expid = c(expid, expe)
+      persid = c(persid, pers)
+      repeid = c(repeid, repe)
+    }
+    mean_xauc <- c(mean_xauc,mean(xval))
+    mean_yauc <- c(mean_yauc,mean(yval))
+    mean_zauc <- c(mean_zauc,mean(zval))
+  }
+}
+
+
 
