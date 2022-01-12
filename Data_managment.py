@@ -1,6 +1,9 @@
-import rpy2.robjects as robjects
+import rpy2
+from rpy2 import robjects
+from rpy2.robjects import pandas2ri
 import pandas as pd
 import numpy as np
+pandas2ri.activate()
 
 
 def main():
@@ -23,7 +26,7 @@ def main():
             for j in range(10):
                 namelist.append("exp" + str(i + 1))
                 repetitionlist.append(("rep" + str(j + 1)))
-                personlist.append("person" + str(j + 1))
+                personlist.append("person" + str(l + 1))
     df = pd.DataFrame([])
     df = df.assign(experiment=namelist)
     df = df.assign(person=personlist)
@@ -41,8 +44,9 @@ def main():
     df = df.assign(z=z)
 
 
-    print(df)
-    print(df.loc[0, "z"])
+    #print(df)
+    #print(df.loc[0, "z"])
+    df.to_csv('Dataframefile')
 
 
 # For good python style

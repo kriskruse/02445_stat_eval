@@ -109,7 +109,7 @@ df <- as.data.frame(do.call(cbind, armdata))
 
 
 
-
+df <- read.csv("Dataframefile")
 
 
 
