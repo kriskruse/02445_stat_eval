@@ -105,6 +105,14 @@ df_auc <- data.frame(expid, persid, repeid, xauc, yauc, zauc)
 df_mean_auc <- data.frame(experiment = as.factor(compexpid),person = as.factor(compers), mean_xauc, mean_yauc, mean_zauc)
 
 
+L <- lm(mean_xauc ~ experiment + person, data = df_mean_auc)
+L_aov <- aov(mean_xauc ~ experiment + person, data = df_mean_auc)
+
+anova(L)
+anova(L_aov)
+drop1(L, test = "F")
+drop1(L_aov, test = "F")
+
 
 Lx <- lm(mean_xauc ~ person + experiment, data = df_mean_auc)
 Ly <- lm(mean_yauc ~ person + experiment, data = df_mean_auc)
@@ -122,3 +130,4 @@ drop1(Lz, test = "F")
 Lx <- lm(mean_xauc ~ person, data = df_mean_auc)
 anova(Lx)
 drop1(Lx, test = "F")
+
