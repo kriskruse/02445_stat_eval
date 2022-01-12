@@ -13,7 +13,7 @@ armdata <- get(load(file = "fixedarmdata.RData"))
 #change wheter you want x,y,z values
 #x=1, y=2, z=3
 
-coordinate=3
+coordinate=1
 
 for (expNum in 1:16) {
   df <-as.data.frame(matrix(nrow=10,ncol=100))

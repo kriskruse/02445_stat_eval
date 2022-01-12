@@ -100,6 +100,13 @@ for (expe in 1:16) {
 
 df_auc <- data.frame(expid, persid, repeid, xauc, yauc, zauc)
 
-df_mean_auc <- data.frame(experiemnt = compexpid,person = compers, mean_xauc, mean_yauc, mean_zauc)
+#df_mean_auc <- data.frame(experiment = compexpid,person = compers, mean_xauc, mean_yauc, mean_zauc)
 
+df_mean_auc <- data.frame(experiment = as.factor(compexpid),person = as.factor(compers), mean_xauc, mean_yauc, mean_zauc)
 
+L <- lm(mean_xauc ~ experiment + person, data = df_mean_auc)
+
+summary(L)
+
+anova(L)
+drop1(L, test = "F")
