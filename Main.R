@@ -2,6 +2,7 @@
 # if needed
 library(abind)
 library(dplyr)
+require(pracma)
 
 
 ############### data load
@@ -59,9 +60,46 @@ xyz_mean = array(c(x_mean,y_mean,z_mean), dim = c(100,3))
 
 
 
-df[1,1]
 
 
 
-?read.csv()
+xauc <- c()
+yauc <- c()
+zauc <- c()
+expid = c()
+persid = c()
+repeid = c()
+mean_xauc <- c()
+mean_yauc <- c()
+mean_zauc <- c()
+compexpid <- c()
+compers <- c()
+for (expe in 1:16) {
+  for (pers in 1:10) {
+    xval =c()
+    yval =c()
+    zval =c()
+    compexpid = c(compexpid, expe)
+    compers = c(compers, pers)
+    for (repe in 1:10) {
+      xval <- c(xval,trapz(1:100,armdata[[expe]][[pers]][[repe]][,1]))
+      yval <- c(yval,trapz(1:100,armdata[[expe]][[pers]][[repe]][,2]))
+      zval <- c(zval,trapz(1:100,armdata[[expe]][[pers]][[repe]][,3]))
+      xauc <- c(xauc,trapz(1:100,armdata[[expe]][[pers]][[repe]][,1]))
+      yauc <- c(yauc,trapz(1:100,armdata[[expe]][[pers]][[repe]][,2]))
+      zauc <- c(zauc,trapz(1:100,armdata[[expe]][[pers]][[repe]][,3]))
+      expid = c(expid, expe)
+      persid = c(persid, pers)
+      repeid = c(repeid, repe)
+    }
+    mean_xauc <- c(mean_xauc,mean(xval))
+    mean_yauc <- c(mean_yauc,mean(yval))
+    mean_zauc <- c(mean_zauc,mean(zval))
+  }
+}
+
+df_auc <- data.frame(expid, persid, repeid, xauc, yauc, zauc)
+
+df_mean_auc <- data.frame(experiemnt = compexpid,person = compers, mean_xauc, mean_yauc, mean_zauc)
+
 
