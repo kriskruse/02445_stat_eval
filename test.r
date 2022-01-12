@@ -7,7 +7,7 @@ library(rgl)
 
 
 ############### data load
-armdata <- get(load(file = "armdata.RData"))
+armdata <- get(load(file = "fixedarmdata.RData"))
 ## access with armdata
 
 
@@ -37,8 +37,8 @@ shade3d(addNormals(subdivision3d(cyl3)), col = 'lightblue')
 
 
 fav <- c("red", "green", "blue", "magenta", "yellow", "black", "gray", "orange", "pink", "darkolivegreen4")
-for (x in 15){
-  for (y in 1:10){
+for (x in 13){
+  for (y in 9){
     for (z in 1:10) {
       lines3d(armdata[[x]][[y]][[z]], col = fav[y])
     }

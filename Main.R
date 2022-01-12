@@ -47,6 +47,5 @@ for (expnr in 1:16) {
     }
   }
 }
-
 save(armdata, file = "fixedarmdata.RData")              
                    

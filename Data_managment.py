@@ -4,7 +4,7 @@ import numpy as np
 
 def main():
     # Load the data form the rdata file into python, and bind it to a variable
-    robjects.r['load']("armdata.RData")
+    robjects.r['load']("fixedarmdata.RData")
     matrix = robjects.r["armdata"]
 
     # convert the data to a numpy array, so we can use the numpy functionality
