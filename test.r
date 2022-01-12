@@ -36,14 +36,15 @@ cyl3 <- cylinder3d(cbind(45, 0, seq(0, size, length = 10)), radius = c(3,3,3), s
 shade3d(addNormals(subdivision3d(cyl3)), col = 'lightblue')
 
 
-fav <- c("red", "green", "blue", "magenta", "yellow", "black", "gray", "orange", "pink", "darkolivegreen4")
-for (x in 13){
-  for (y in 9){
-    for (z in 1:10) {
+fav <- c("papayawhip", "green", "blue", "magenta", "yellow", "black", "gray", "orange", "pink", "darkolivegreen4")
+for (x in 1){
+  for (y in 1:10){
+    for (z in 5) {
       lines3d(armdata[[x]][[y]][[z]], col = fav[y])
     }
   }
 }
+lines3d(xyz_mean, col = "red", lwd = 12000, alpha = 0.5)
 
 
 
@@ -70,6 +71,46 @@ for (x in 1:16) {
   yval <- c()
   zval <- c()
 }
+
+
+
+
+
+
+exp_ <- c()
+pers_ <- c()
+rep_ <- c()
+x_ <- c()
+y_ <- c()
+z_ <- c()
+
+
+for (e in 1:16) {
+  for (p in 1:10) {
+    for (r_ in 1:10){
+      exp_ <- c(exp_, e)
+      pers_ <- c(pers_, p)
+      rep_ <- c(rep_, r_)
+      for (x in 1:100) {
+        x_ <- c(x_, armdata[[e]][[p]][[r_]][x, 1])
+        y_ <- c(y_, armdata[[e]][[p]][[r_]][x, 2])
+        z_ <- c(z_, armdata[[e]][[p]][[r_]][x, 3])
+      }
+    }
+  }
+}
+
+dfarm <- data.frame(experiments = exp_, persons = pers_, repition = rep_, x = paste(x_, collapse = ","),
+                    y =  paste(y_, collapse = ","), z = paste(z_, collapse = ","))
+
+
+
+df <- as.data.frame(do.call(cbind, armdata))
+
+
+
+
+
 
 
 
