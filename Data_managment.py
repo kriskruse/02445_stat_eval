@@ -46,7 +46,7 @@ def main():
 
     #print(df)
     #print(df.loc[0, "z"])
-    df.to_csv('Dataframefile')
+    df.to_csv('Dataframefile.csv')
 
 
 # For good python style

@@ -1,10 +1,13 @@
 ###### Packages, if not downloaded run install.packages()
 # if needed
 library(abind)
+library(dplyr)
 
 
 ############### data load
 load(file = "fixedarmdata.RData")
+df <- read.csv("Dataframefile")
+df = subset(df, select = -c(X) )
 ## access with armdata
 
 # Unpack the Experiments into their own lists
@@ -23,7 +26,7 @@ for (item in armdata){
 
 
 #### Fancy shit under here
-model <- aov(armdata[[1]][[1]][[1]][,3] ~ armdata[[1]][[1]][[1]][,1] * armdata[[1]][[1]][[1]][,2])
+model <- aov( )
 anova(model)
 summary(model)
 
@@ -52,4 +55,13 @@ y_mean = rowMeans(array(ylist, dim = c(100,100)))
 z_mean = rowMeans(array(zlist, dim = c(100,100)))
 
 xyz_mean = array(c(x_mean,y_mean,z_mean), dim = c(100,3))
+
+
+
+
+df[1,1]
+
+
+
+?read.csv()
 

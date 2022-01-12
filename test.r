@@ -7,9 +7,9 @@ library(rgl)
 
 
 ############### data load
-armdata <- get(load(file = "fixedarmdata.RData"))
+load(file = "fixedarmdata.RData")
 df <- read.csv("Dataframefile")
-## access with armdata
+df = subset(df, select = -c(X) )
 
 
 #####  plot 3d images of lines 
