@@ -165,10 +165,36 @@ rgl.open() # Open a new RGL device
 rgl.points(mean_pr_experimentx, mean_pr_experimenty, mean_pr_experimentz, color ="lightgray") # Scatter plot
 rgl.bbox(color = "#333377") # Add bounding box decoration
 
+
+#helper function, should be moved to different script
+#' Get colors for the different levels of 
+#' a factor variable
+#' 
+#' @param groups a factor variable containing the groups
+#'  of observations
+#' @param colors a vector containing the names of 
+#   the default colors to be used
+get_colors <- function(groups, group.col = palette()){
+  groups <- as.factor(groups)
+  ngrps <- length(levels(groups))
+  if(ngrps > length(group.col)) 
+    group.col <- rep(group.col, ngrps)
+  color <- group.col[as.numeric(groups)]
+  names(color) <- as.vector(groups)
+  return(color)
+}
+
+
 ### Plotting all the 160 observations in 3d by xarea,yarea and zarea. 
 rgl.open() # Open a new RGL device
-rgl.points(df_mean_auc$mean_xauc, df_mean_auc$mean_yauc, df_mean_auc$mean_zauc, color ="lightgray") # Scatter plot
+#rgl.points(df_mean_auc$mean_xauc, df_mean_auc$mean_yauc, df_mean_auc$mean_zauc, color ="lightgray") # Scatter plot
+rgl.points(df_mean_auc$mean_xauc, df_mean_auc$mean_yauc, df_mean_auc$mean_zauc, color = get_colors(df_mean_auc$experiment)) # Scatter plot
 rgl.bbox(color = "#333377") # Add bounding box decoration
+
+scatter3d(x = mean_pr_experimentx, y = mean_pr_experimenty, z = mean_pr_experimentz, groups = df_mean_auc$experiment,
+          grid = FALSE, surface = FALSE)
+
+
 
 
 # density plots for each attribute by class value
