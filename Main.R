@@ -110,9 +110,16 @@ anova(L_aov)
 drop1(L_aov, test = "F")
 # gives the same result as above
 
+# looking for normal distribution
+residuals <- resid(L_aov)
+plot(mean_xauc, residuals, xlab="Area under the curve x", ylab="Residuals")
+abline(0,0)
+hist(residuals)
+qqplot(residuals, mean_xauc)
 
 residuals <- resid(L_aov)
 qqplot((residuals))
+
 
 plot(mean_xauc, residuals, xlab="Area under the curve x", ylab="Residuals")
 abline(0,0)
@@ -123,6 +130,9 @@ plot(L_aov)
 #################################
 ## Some plots
 
+
+
+# Some more ANOVA test
 
 Lx <- lm(mean_xauc ~ person + experiment, data = df_mean_auc)
 Ly <- lm(mean_yauc ~ person + experiment, data = df_mean_auc)
@@ -147,6 +157,4 @@ exp_1$persid  <- as.factor(exp_1$persid)
 exp_1$repeid   <- as.factor(exp_1$persid)
 
 one.way <- aov(xauc ~ persid , data = exp_1)
-
 anova(one.way)
-
