@@ -39,15 +39,28 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, Y, train_size=0.8, random
 
 # note: 0.01 seems to be the best C value, of the tested
 #test_lst = [0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000]
+lam = 0.01
 
-lr1 = LogisticRegression(multi_class="ovr", C=0.01, max_iter=100000)
+lr1 = LogisticRegression(multi_class="ovr", C=lam, max_iter=100000)
 model = lr1.fit(X_train, Y_train)
 y_pred = model.predict(X_test)
 
 print("")
-print(f"lambda value: {0.01}")
+print(f"lambda value: {lam}")
 print(f"train score {model.score(X_train, Y_train)}")
 print(f"test score {model.score(X_test, Y_test)}")
+
+lr2 = LogisticRegression(multi_class="multinomial", C=lam, max_iter=100000)
+model2 = lr2.fit(X_train, Y_train)
+y_pred2 = model2.predict(X_test)
+
+print("")
+print(f"lambda value: {lam}")
+print(f"train score {model2.score(X_train, Y_train)}")
+print(f"test score {model2.score(X_test, Y_test)}")
+
+
+
 
 # plot_confusion_matrix(lr1, X_train, Y_train)
 # print(classification_report(Y_test, y_pred))
