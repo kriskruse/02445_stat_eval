@@ -44,9 +44,9 @@ def main():
     df = df.assign(z=z)
 
 
-    #print(df)
+    print(df["x"][0][0])
     #print(df.loc[0, "z"])
-    df.to_csv('Dataframefile.csv')
+    df.to_pickle("DataFrame.pkl")
 
 
 # For good python style

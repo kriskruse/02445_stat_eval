@@ -110,14 +110,15 @@ anova(L_aov)
 drop1(L_aov, test = "F")
 # gives the same result as above
 
+# looking for normal distribution
+residuals <- resid(L_aov)
+plot(mean_xauc, residuals, xlab="Area under the curve x", ylab="Residuals")
+abline(0,0)
+hist(residuals)
+qqplot(residuals, mean_xauc)
 
 
-
-
-#################################
-## Some plots
-
-
+# Some more ANOVA test
 Lx <- lm(mean_xauc ~ person + experiment, data = df_mean_auc)
 Ly <- lm(mean_yauc ~ person + experiment, data = df_mean_auc)
 Lz <- lm(mean_zauc ~ person + experiment, data = df_mean_auc)
@@ -141,9 +142,12 @@ exp_1$persid  <- as.factor(exp_1$persid)
 exp_1$repeid   <- as.factor(exp_1$persid)
 
 one.way <- aov(xauc ~ persid , data = exp_1)
-
 anova(one.way)
 
+
+
+#################################
+## Some plots
 ###
 #trying to see if the area under the curve varies between the experiments. 
 mean_pr_experimentx<-c()
@@ -189,8 +193,8 @@ get_colors <- function(groups, group.col = palette()){
 
 ### Plotting all the 160 observations in 3d by xarea,yarea and zarea. 
 rgl.open() # Open a new RGL device
-#rgl.points(df_mean_auc$mean_xauc, df_mean_auc$mean_yauc, df_mean_auc$mean_zauc, color ="lightgray") # Scatter plot
-rgl.points(df_mean_auc$mean_xauc, df_mean_auc$mean_yauc, df_mean_auc$mean_zauc, color = get_colors(df_mean_auc$experiment)) # Scatter plot
+rgl.points(df_mean_auc$mean_xauc, df_mean_auc$mean_yauc, df_mean_auc$mean_zauc, color ="lightgray") # Scatter plot
+#rgl.points(df_mean_auc$mean_xauc, df_mean_auc$mean_yauc, df_mean_auc$mean_zauc, color = get_colors(df_mean_auc$experiment)) # Scatter plot
 rgl.bbox(color = "#333377") # Add bounding box decoration
 
 scatter3d(x = mean_pr_experimentx, y = mean_pr_experimenty, z = mean_pr_experimentz, groups = df_mean_auc$experiment,
@@ -242,3 +246,4 @@ fit.rf <- train(experiment~., data=dataset, method="rf", metric=metric, trContro
 # summarize accuracy of models
 results <- resamples(list(lda=fit.lda, cart=fit.cart, knn=fit.knn, svm=fit.svm, rf=fit.rf))
 summary(results)
+
