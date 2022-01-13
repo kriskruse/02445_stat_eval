@@ -5,6 +5,7 @@ import torch
 import pandas as pd
 from torch import nn
 from torch.utils.data import DataLoader
+import sklearn.preprocessing
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 
@@ -30,8 +31,8 @@ def main():
 
     df = pd.read_pickle("DataFrame.pkl")
 
-    for col in df.columns:
-        print(col)
+    #for col in df.columns:
+        #print(col)
 
     le = LabelEncoder()
     Y = le.fit_transform(df["experiment"])
@@ -42,14 +43,17 @@ def main():
     val = np.array([])
     for lst in X:
         toms = list(it.chain.from_iterable([lst[0], lst[1], lst[2]]))
-        print(np.shape(toms))
+        #print(np.shape(toms))
 
-        val = np.append(val, toms, axis=0)
+        val = np.append(val, toms)
+    val.shape = (1600,300)
+    X = val
 
-    print(np.shape(val))
+    print(f"Shape of X: {np.shape(X)}")
+    print(f"Datatype X: {X.dtype}")
+    print(f"Shape of Y: {np.shape(Y)}")
+    print(f"Datatype Y: {Y.dtype}")
 
-    print(np.shape(X))
-    print(np.shape(Y))
 
     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, train_size=0.8, random_state=seed)
     X_train, X_test, Y_train, Y_test = torch.tensor(X_train, dtype=torch.float32), \
@@ -58,13 +62,13 @@ def main():
                                        torch.tensor(Y_test, dtype=torch.float32)
 
     samples, features = X_train.shape
+    classes = Y_train.unique()
 
     print(X_train.shape, X_test.shape, Y_train.shape, Y_test.shape)
-    print(samples, features)
+    print(samples, features, classes)
 
     mean = X_train.mean(axis=0)
     std = X_train.std(axis=0)
-
     X_train = (X_train - mean) / std
     X_test = (X_test - mean) / std
 
