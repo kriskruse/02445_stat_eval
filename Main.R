@@ -27,18 +27,6 @@ for (item in armdata){
 # experiment 1 person 1, for each person there is 10 repetitions, unlabeled
 # for these access them with "eks1$per1[1]" for rep 1
 
-
-#### Fancy shit under here
-model <- aov( )
-anova(model)
-summary(model)
-
-aov(afvigelse_gen ~ person)
-
-
-
-
-
 # Find mean line for experiment
 
 xlist = c()
@@ -64,7 +52,8 @@ xyz_mean = array(c(x_mean,y_mean,z_mean), dim = c(100,3))
 
 
 
-
+### Data processing for ANOVA
+# pre defines
 xauc <- c()
 yauc <- c()
 zauc <- c()
@@ -76,6 +65,9 @@ mean_yauc <- c()
 mean_zauc <- c()
 compexpid <- c()
 compers <- c()
+
+# data manipulation, Goal here is to get a mean of AUC for each person in each experiment
+# and add it to a dataframe
 for (expe in 1:16) {
   for (pers in 1:10) {
     xval =c()
@@ -100,20 +92,30 @@ for (expe in 1:16) {
   }
 }
 
-df_auc <- data.frame(expid, persid, repeid, xauc, yauc, zauc)
 
-#df_mean_auc <- data.frame(experiment = compexpid,person = compers, mean_xauc, mean_yauc, mean_zauc)
-
+# first dataframe contains the raw values of AUC, second contains the means
+df_auc <- data.frame(expid, persid, repeid, xauc, yauc, zauc) # 1600 obs
 df_mean_auc <- data.frame(experiment = as.factor(compexpid),person = as.factor(compers), mean_xauc, mean_yauc, mean_zauc)
+# 160 obs
 
 
+# making a linear model and running ANOVA on it
 L <- lm(mean_xauc ~ experiment + person, data = df_mean_auc)
-L_aov <- aov(mean_xauc ~ experiment + person, data = df_mean_auc)
-
+summary(L)
 anova(L)
-anova(L_aov)
 drop1(L, test = "F")
+# trying the similar aov() function, that should do the anova directly
+L_aov <- aov(mean_xauc ~ experiment + person, data = df_mean_auc)
+anova(L_aov)
 drop1(L_aov, test = "F")
+# gives the same result as above
+
+
+
+
+
+#################################
+## Some plots
 
 
 Lx <- lm(mean_xauc ~ person + experiment, data = df_mean_auc)
