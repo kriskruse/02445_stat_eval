@@ -1,5 +1,5 @@
 import os
-
+import itertools as it
 import numpy as np
 import torch
 import pandas as pd
@@ -30,21 +30,26 @@ def main():
 
     df = pd.read_pickle("DataFrame.pkl")
 
-
     for col in df.columns:
         print(col)
 
     le = LabelEncoder()
     Y = le.fit_transform(df["experiment"])
     Y = np.sort(np.array(Y))
+    X = np.array([df["x"], df["y"], df["z"]])
+    X = np.transpose(X)
 
-    print(df["x"][1][0])
-    X = [df["x"], df["y"], df["z"]]
-    #rint(X)
+    val = np.array([])
+    for lst in X:
+        toms = list(it.chain.from_iterable([lst[0], lst[1], lst[2]]))
+        print(np.shape(toms))
 
+        val = np.append(val, toms, axis=0)
 
+    print(np.shape(val))
 
-
+    print(np.shape(X))
+    print(np.shape(Y))
 
     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, train_size=0.8, random_state=seed)
     X_train, X_test, Y_train, Y_test = torch.tensor(X_train, dtype=torch.float32), \
@@ -62,7 +67,6 @@ def main():
 
     X_train = (X_train - mean) / std
     X_test = (X_test - mean) / std
-
 
 
 if __name__ == "__main__":

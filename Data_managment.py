@@ -44,9 +44,9 @@ def main():
     df = df.assign(z=z)
 
 
-    print(df["x"][0][0])
+    print(df["x"][1][0])
     #print(df.loc[0, "z"])
-    df.to_pickle("DataFrame.pkl")
+    #df.to_pickle("DataFrame.pkl")
 
 
 # For good python style
