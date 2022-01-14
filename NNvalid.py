@@ -1,5 +1,5 @@
 from validation_model import ValidationModel
-import NNmodel
+from nn_model import NNModel
 import numpy as np
 import torch.nn as nn
 import torch

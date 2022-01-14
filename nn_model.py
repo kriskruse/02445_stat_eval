@@ -2,6 +2,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
+
 class NNModel(nn.Module):
     def __init__(self, n_nodes_per_layer, n_in, n_out) -> None:
         super(NNModel, self).__init__()
