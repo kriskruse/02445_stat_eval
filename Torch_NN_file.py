@@ -315,15 +315,15 @@ for e in tqdm(range(1, EPOCHS + 1)):
 
 # plot the stuff
 # Create dataframes
-train_val_acc_df = pd.DataFrame.from_dict(accuracy_stats).reset_index().melt(id_vars=['index']).rename(
-    columns={"index": "epochs"})
-train_val_loss_df = pd.DataFrame.from_dict(loss_stats).reset_index().melt(id_vars=['index']).rename(
-    columns={"index": "epochs"})  # Plot the dataframes
-fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(20, 7))
-sns.lineplot(data=train_val_acc_df, x="epochs", y="value", hue="variable", ax=axes[0]).set_title(
-    'Train-Val Accuracy/Epoch')
-sns.lineplot(data=train_val_loss_df, x="epochs", y="value", hue="variable", ax=axes[1]).set_title(
-    'Train-Val Loss/Epoch')
+# train_val_acc_df = pd.DataFrame.from_dict(accuracy_stats).reset_index().melt(id_vars=['index']).rename(
+#     columns={"index": "epochs"})
+# train_val_loss_df = pd.DataFrame.from_dict(loss_stats).reset_index().melt(id_vars=['index']).rename(
+#     columns={"index": "epochs"})  # Plot the dataframes
+# fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(20, 7))
+# sns.lineplot(data=train_val_acc_df, x="epochs", y="value", hue="variable", ax=axes[0]).set_title(
+#     'Train-Val Accuracy/Epoch')
+# sns.lineplot(data=train_val_loss_df, x="epochs", y="value", hue="variable", ax=axes[1]).set_title(
+#     'Train-Val Loss/Epoch')
 
 y_pred_list = []
 with torch.no_grad():
