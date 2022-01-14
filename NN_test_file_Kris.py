@@ -184,12 +184,11 @@ yhot_test = np_utils.to_categorical(Y_test)
 scaler = MinMaxScaler()
 scaler1 = MinMaxScaler()
 scaler2 = MinMaxScaler()
-X_train = np.array(
-    [scaler.fit_transform(X_train[0]), scaler1.fit_transform(X_train[1]), scaler2.fit_transform(X_train[2])])
-X = np.array([scaler.transform(X[0]), scaler1.transform(X[1]), scaler2.transform(X[2])])
-X_test = np.array([scaler.transform(X_test[0]), scaler1.transform(X_test[1]), scaler2.transform(X_test[2])])
+X_train = [scaler.fit_transform(X_train[0]), scaler1.fit_transform(X_train[1]), scaler2.fit_transform(X_train[2])]
+X = [scaler.transform(X[0]), scaler1.transform(X[1]), scaler2.transform(X[2])]
+X_test = [scaler.transform(X_test[0]), scaler1.transform(X_test[1]), scaler2.transform(X_test[2])]
 
-print(X_train.shape, X_test.shape, Y_train.shape, Y_test.shape)
+#print(X_train.shape, X_test.shape, Y_train.shape, Y_test.shape)
 
 train_dataset = ClassifierDataset(torch.from_numpy(X_train).float(), torch.from_numpy(Y_train).long())
 val_dataset = ClassifierDataset(torch.from_numpy(X).float(), torch.from_numpy(Y).long())
