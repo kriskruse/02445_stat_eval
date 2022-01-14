@@ -15,7 +15,7 @@ class NeuralNetworkClass(ValidationModel):
 
         #Number of hidden layers
         self.n_hidden_layers = n_hidden_layers
-        self.epochs = 15000
+        self.epochs = 150000
         
 
 
@@ -53,7 +53,9 @@ class NeuralNetworkClass(ValidationModel):
                 optimizer.zero_grad()
                 loss.backward()
                 optimizer.step()
-
+        
+            if epoch % 500 == 0:
+                print(epoch, loss.item())
 
 
         

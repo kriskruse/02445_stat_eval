@@ -4,14 +4,208 @@ import matplotlib.pyplot as plt
 import pickle
 import pandas as pd
 import itertools as it
-
+from torch.utils.data import Dataset, DataLoader
 from cross_validator import CrossValidator
 from sklearn.preprocessing import MinMaxScaler, LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, classification_report
+import torch
+import torch.nn as nn
 
 from NNvalid import NeuralNetworkClass
 #from Torch_NN_file_xy import ClassifierDataset
+
+
+#%%
+
+armdata = pd.read_csv('armdata_fixed.csv')
+my_data = armdata.values
+#x = my_data[0:100,]
+#y = my_data[100:200 ,]
+#z = my_data[200:300 ,]
+before_data = np.array(armdata).reshape(16, 10, 10, 300)
+
+data = np.zeros((16, 10, 10, 100, 3)) 
+for (epr, per, rep) in [(e, p, r) for e in range(16) for p in range(10) for r in range(10)]:
+    data[epr, per, rep, :, 0] = before_data[epr, per, rep,   0:100]
+    data[epr, per, rep, :, 1] = before_data[epr, per, rep, 100:200]
+    data[epr, per, rep, :, 2] = before_data[epr, per, rep, 200:300]
+    
+
+#    
+#e = 0
+#p = 0
+#r = 0
+#k = 0
+#
+#
+#for (e, p, r, k) in range(16):
+#    before_data[e, p, r, k]
+#    
+#
+#exp = []
+#
+#for e in range(16):
+#    per = []
+#    exp.append(per)
+#    for p in range(10):
+#        rep = []
+#        per.append(rep)
+#        for r in range(1,11):
+#            k = 100*r
+#            if k > 100:
+#                x = my_data[k - 100:k,]
+#            else:
+#                x = my_data[0:k,]
+#            y = my_data[k:k+100 ,]
+#            z = my_data[k + 100: k + 200 ,]
+#            rep.append(np.hstack((x,y,z)))
+#    
+
+#%%
+
+armydata = np.array(exp)
+
+#for r in range(1,160000, 3):
+#    k = 100*r
+#    if k > 100:
+#        x = my_data[k - 100:k,]
+#    else:
+#        x = my_data[0:k,]
+#    y = my_data[k:k+100 ,]
+#    z = my_data[k + 100: k + 100 + 100 ,]
+#    array_me_this = np.column_stack((x,y,z))
+#
+##f = np.reshape(my_data, ())
+
+
+
+
+
+
+
+
+
+#%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 df = pd.read_pickle("DataFrame.pkl")
 
@@ -61,16 +255,32 @@ def test(models):
 
 #%%
 
-NeuralNetworkClass(2).train_predict(X_train, Y_train, X_test)
+h = NeuralNetworkClass(3).train_predict(X_train, Y_train, X_test)
 
-
+plt.hist(h)
 
 
 #%%
-nn_params = [i for i in range(2, 16)]
+nn_params = [i for i in range(2, 4)]
 nn_models = [NeuralNetworkClass(p) for p in nn_params]
 
 
 
 results = test(nn_models)
+# %%
+
+
+
+
+
+
+#%%
+
+
+idx_label = np.argsort(y)
+labels_predict = NeuralNetworkClass(3).train_predict(X_train, Y_train, X_test)
+
+plt.plot(y[idx_label], labels_predict[idx_label],"-")
+plt.plot(y[idx_label], y[idx_label])
+plt.show()
 # %%
