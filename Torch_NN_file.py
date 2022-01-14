@@ -158,14 +158,12 @@ Y = np.sort(np.array(Y))
 X = np.array([df["x"], df["y"], df["z"]])
 X = np.transpose(X)
 
-val = np.array([])
-for lst in X:
-    toms = list(it.chain.from_iterable([lst[0], lst[1], lst[2]]))
-    # print(np.shape(toms))
-
-    val = np.append(val, toms)
-val.shape = (1600, 300)
-X = val
+# val = np.array([])
+# for lst in X:
+#     toms = list(it.chain.from_iterable([lst[0], lst[1], lst[2]]))
+#     val = np.append(val, toms)
+# val.shape = (1600, 300)
+# X = val
 
 print(f"Shape of X: {np.shape(X)}")
 print(f"Datatype X: {X.dtype}")
