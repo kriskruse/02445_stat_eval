@@ -155,14 +155,14 @@ df = pd.read_pickle("DataFrame.pkl")
 le = LabelEncoder()
 Y = le.fit_transform(df["experiment"])
 Y = np.sort(np.array(Y))
-X = np.array([df["x"], df["y"], df["z"]])
+X = np.array([df["x"], df["y"]])
 X = np.transpose(X)
 
 val = np.array([])
 for lst in X:
-    toms = list(it.chain.from_iterable([lst[0], lst[1], lst[2]]))
+    toms = list(it.chain.from_iterable([lst[0], lst[1]]))
     val = np.append(val, toms)
-val.shape = (1600, 300)
+val.shape = (1600, 200)
 X = val
 
 print(f"Shape of X: {np.shape(X)}")
