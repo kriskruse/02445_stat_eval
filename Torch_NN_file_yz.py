@@ -232,6 +232,7 @@ weighted_sampler = WeightedRandomSampler(
     replacement=True
 )
 
+# TODO Check other parameters
 # This is where it starts
 EPOCHS = 300
 BATCH_SIZE = 16
