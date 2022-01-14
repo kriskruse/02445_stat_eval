@@ -214,7 +214,7 @@ class2idx = {
 }
 
 idx2class = {v: k for k, v in class2idx.items()}
-df['quality'].replace(class2idx, inplace=True)
+#df['quality'].replace(class2idx, inplace=True)
 
 
 target_list = []
