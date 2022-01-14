@@ -75,14 +75,14 @@ def main():
     yhot_train = np_utils.to_categorical(Y_train)
     yhot_test = np_utils.to_categorical(Y_test)
 
-    cmodel = KerasClassifier(build_fn=baseline_model, epochs=200, batch_size=100, verbose=0)
+    cmodel = KerasClassifier(build_fn=baseline_model(features,classes), epochs=200, batch_size=100, verbose=0)
     kfold = KFold(n_splits=10, shuffle=True)
 
     result = cross_val_score(cmodel, X, yhot, cv=kfold)
     print("Result: %.2f%% (%.2f%%)" % (result.mean() * 100, result.std() * 100))
 
     model = baseline_model(features, classes)
-    model.compile(loss='categorical_crossentropy', optimizer='SGD', metrics=['accuracy'])
+    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     history = model.fit(X_train, yhot_train, validation_split=0.2,
                         epochs=200, batch_size=100, verbose=0)
 
