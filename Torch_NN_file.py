@@ -238,7 +238,7 @@ weighted_sampler = WeightedRandomSampler(
 EPOCHS = 300
 BATCH_SIZE = 16
 LEARNING_RATE = 0.0007
-NUM_FEATURES = len(X.columns)
+NUM_SAMPLES, NUM_FEATURES = X_train.shape
 NUM_CLASSES = np.unique(Y).size
 
 train_loader = DataLoader(dataset=train_dataset,
