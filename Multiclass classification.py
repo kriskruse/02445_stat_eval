@@ -39,7 +39,8 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, Y, train_size=0.8, random
 # yhot_test = np_utils.to_categorical(Y_test)
 
 # note: 0.01 seems to be the best C value, of the tested
-test_lst = [0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000]
+# test_lst = [0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000]
+test_lst = [1, 10, 100, 1000, 10000]
 lam = 0.01
 # for lam in test_lst:
 
@@ -83,20 +84,20 @@ Y = np.array(Y)
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, train_size=0.8, random_state=1)
 
 print("")
-print("new sizes for simpler classification task")
-print(np.size(Y_train))
-print(np.size(Y_test))
-
-for lam in test_lst:
-    lr3 = LogisticRegression(multi_class="multinomial", C=lam, max_iter=1000)
-    model3 = lr3.fit(X_train, Y_train)
-    y_pred3 = model2.predict(X_test)
-
-    print("")
-    print(f"lambda value: {lam}")
-    print(f"train score {model2.score(X_train, Y_train)}")
-    print(f"test score {model2.score(X_test, Y_test)}")
+print("new classes for simpler classification task")
+print(f"Y train size {np.size(Y_train)}")
+print(f"Y test size {np.size(Y_test)}")
+print("Doing the fitting now")
 
 
-# print(classification_report(Y_test, y_pred))
-# print(classification_report(Y_test, y_pred2))
+lam = 10
+lr3 = LogisticRegression(multi_class="multinomial", C=lam, max_iter=10**24, n_jobs=-1)
+model3 = lr3.fit(X_train, Y_train)
+y_pred3 = model3.predict(X_test)
+
+print("")
+print(f"lambda value: {lam}")
+print(f"train score {model3.score(X_train, Y_train)}")
+print(f"test score {model3.score(X_test, Y_test)}")
+
+
