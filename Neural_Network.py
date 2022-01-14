@@ -22,8 +22,8 @@ def baseline_model(features, classes):
     model = Sequential()
 
     # Rectified Linear Unit Activation Function
-    model.add(Dense(features * 2, input_dim=features, activation='tanh'))
-    model.add(Dense(features * 2, activation='tanh'))  # Softmax for multi-class classification
+    model.add(Dense(features * 2, input_dim=features, activation='sigmoid'))
+    model.add(Dense(features * 2, activation='sigmoid'))  # Softmax for multi-class classification
     model.add(Dense(classes, activation='softmax'))  # Compile model
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     return model
@@ -64,7 +64,7 @@ def main():
     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, train_size=0.8, random_state=seed)
 
     samples, features = X_train.shape
-    classes = np.unique(Y_train)
+    classes = np.unique(Y_train).size
 
     print(X_train.shape, X_test.shape, Y_train.shape, Y_test.shape)
     print(samples, features, classes)
