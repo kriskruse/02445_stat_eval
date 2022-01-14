@@ -15,7 +15,7 @@ class NeuralNetworkClass(ValidationModel):
 
         #Number of hidden layers
         self.n_hidden_layers = n_hidden_layers
-        self.epochs = 500
+        self.epochs = 15000
         
 
 
@@ -30,13 +30,15 @@ class NeuralNetworkClass(ValidationModel):
         
       
         
-        model = NNModel(self.n_hidden_layers)
+        model = NNModel(self.n_hidden_layers,
+                        feat_t.shape[1],
+                        16)
         
         loss_func = nn.CrossEntropyLoss()
        
 
 
-        learning_rate = 1e-3
+        learning_rate = 1e-5
         optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
         
         
@@ -45,7 +47,7 @@ class NeuralNetworkClass(ValidationModel):
                 # Forward pass: compute predicted y by passing x to the model.
                 y_pred = model(x)
 
-                loss = loss_func(y_pred, y.argmax(dim=1))
+                loss = loss_func(y_pred, y.long())
                 
                 
                 optimizer.zero_grad()
@@ -62,14 +64,14 @@ class NeuralNetworkClass(ValidationModel):
         test_pred = model(feat_test)
 
         #Transforming it into numpy arrays
-        test_pred = test_pred.detach().numpy().squeeze()
+        test_pred = test_pred.detach().numpy().squeeze().argmax(axis = 1)
         
         #If classifying, one-hot-encode predictions
-        y_pred = np.zeros_like(test_pred)
-        y_pred_idx = np.argmax(test_pred, axis=1)
-        y_pred[np.arange(len(test_pred)), y_pred_idx] = 1
-        
-        test_pred = y_pred
+        #y_pred = np.zeros_like(test_pred)
+        #y_pred_idx = np.argmax(test_pred, axis=1)
+        #y_pred[np.arange(len(test_pred)), y_pred_idx] = 1
+        #
+        #test_pred = y_pred
 
         #Predict
         #Discard model

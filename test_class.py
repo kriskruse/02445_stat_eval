@@ -1,3 +1,4 @@
+#%%
 import numpy as np
 import matplotlib.pyplot as plt
 import pickle
@@ -10,6 +11,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, classification_report
 
 from NNvalid import NeuralNetworkClass
+#from Torch_NN_file_xy import ClassifierDataset
 
 df = pd.read_pickle("DataFrame.pkl")
 
@@ -29,6 +31,10 @@ for lst in X:
 val.shape = (1600, 200)
 X = val
 
+X_train, X_test, Y_train, Y_test = train_test_split(X, y, train_size=0.8, random_state=9999)
+
+
+
 
 #Define loss function
 def loss_fn(pred, label):
@@ -41,11 +47,11 @@ def loss_fn(pred, label):
     return (np.abs(pred - label).sum() / 2) / len(pred)
 
 
-cv = CrossValidator(n_outer=0, n_inner=10, n_workers=4, stratified= True,
+cv = CrossValidator(n_outer=0, n_inner=10, n_workers=1, stratified= True,
                     verbose = True, randomize_seed = 9999)
 
 #Define tester
-def test(models, name):
+def test(models):
     #Cross validate
     result = cv.cross_validate(X, y, models, loss_fn)
     
@@ -53,7 +59,18 @@ def test(models, name):
     return result
 
 
+#%%
+
+NeuralNetworkClass(2).train_predict(X_train, Y_train, X_test)
+
+
+
+
+#%%
 nn_params = [i for i in range(2, 16)]
 nn_models = [NeuralNetworkClass(p) for p in nn_params]
 
-results = test(nn_models, "nn")
+
+
+results = test(nn_models)
+# %%
