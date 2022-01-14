@@ -10,18 +10,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 
 
-def InitializeWeights(layer_sizes, features):
-    weights = []
-    for i, units in enumerate(layer_sizes):
-        if i == 0:
-            w = torch.rand(units, features, dtype=torch.float32, requires_grad=True)  ## First Layer
-        else:
-            w = torch.rand(units, layer_sizes[i - 1], dtype=torch.float32, requires_grad=True)  ## All other layers
-        b = torch.rand(units, dtype=torch.float32, requires_grad=True)  ## Bias
-        weights.append([w, b])
-
-    return weights
-
 
 def main():
     seed = 42069
