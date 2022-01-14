@@ -22,8 +22,8 @@ def baseline_model(features, classes):
     model = Sequential()
 
     # Rectified Linear Unit Activation Function
-    model.add(Dense(features * 2, input_dim=features, activation='relu'))
-    model.add(Dense(features * 2, activation='relu'))  # Softmax for multi-class classification
+    model.add(Dense(features * 2, input_dim=features, activation='tanh'))
+    model.add(Dense(features * 2, activation='tanh'))  # Softmax for multi-class classification
     model.add(Dense(classes, activation='softmax'))  # Compile model
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     return model
@@ -73,7 +73,7 @@ def main():
     yhot_train = np_utils.to_categorical(Y_train)
     yhot_test = np_utils.to_categorical(Y_test)
 
-    cmodel = KerasClassifier(build_fn=baseline_model, epochs=200, batch_size=100, verbose=0)
+    cmodel = KerasClassifier(build_fn=baseline_model, epochs=2000, batch_size=100, verbose=0)
     kfold = KFold(n_splits=10, shuffle=True)
 
     result = cross_val_score(cmodel, X, yhot, cv=kfold)
