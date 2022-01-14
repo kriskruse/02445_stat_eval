@@ -337,3 +337,4 @@ with torch.no_grad():
 
 confusion_matrix_df = pd.DataFrame(confusion_matrix(Y_test, y_pred_list)).rename(columns=idx2class, index=idx2class)
 sns.heatmap(confusion_matrix_df, annot=True)
+print(classification_report(Y_test, y_pred_list))
