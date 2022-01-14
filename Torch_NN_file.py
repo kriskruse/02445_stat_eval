@@ -333,7 +333,7 @@ with torch.no_grad():
         y_test_pred = model(X_batch)
         _, y_pred_tags = torch.max(y_test_pred, dim = 1)
         y_pred_list.append(y_pred_tags.cpu().numpy())
-        y_pred_list = [a.squeeze().tolist() for a in y_pred_list]
+        # y_pred_list = [a.squeeze().tolist() for a in y_pred_list]
 
 confusion_matrix_df = pd.DataFrame(confusion_matrix(Y_test, y_pred_list)).rename(columns=idx2class, index=idx2class)
 sns.heatmap(confusion_matrix_df, annot=True)
