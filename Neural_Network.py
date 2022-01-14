@@ -22,8 +22,10 @@ def baseline_model(features, classes):
     model = Sequential()
 
     # Rectified Linear Unit Activation Function
-    model.add(Dense(features * 2, input_dim=features, activation='sigmoid'))
-    model.add(Dense(features * 2, activation='sigmoid'))  # Softmax for multi-class classification
+    model.add(Dense(features * 2, input_dim=features, activation='relu'))
+    model.add(Dense(features * 2, activation='relu'))
+    model.add(Dense(features * 2, activation='relu'))
+    model.add(Dense(features * 2, activation='relu'))
     model.add(Dense(classes, activation='softmax'))  # Compile model
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     return model
@@ -73,7 +75,7 @@ def main():
     yhot_train = np_utils.to_categorical(Y_train)
     yhot_test = np_utils.to_categorical(Y_test)
 
-    cmodel = KerasClassifier(build_fn=baseline_model, epochs=2000, batch_size=100, verbose=0)
+    cmodel = KerasClassifier(build_fn=baseline_model, epochs=200, batch_size=100, verbose=0)
     kfold = KFold(n_splits=10, shuffle=True)
 
     result = cross_val_score(cmodel, X, yhot, cv=kfold)
@@ -81,7 +83,7 @@ def main():
 
     model = baseline_model(features, classes)
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-    history = model.fit(X_train, yhot_train, validation_split=0.33,
+    history = model.fit(X, yhot, validation_split=0.2,
                         epochs=200, batch_size=100, verbose=0)
 
     import matplotlib.pyplot as plt
