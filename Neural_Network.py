@@ -64,7 +64,7 @@ def main():
     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, train_size=0.8, random_state=seed)
 
     samples, features = X_train.shape
-    classes = Y_train.unique()
+    classes = np.unique(Y_train)
 
     print(X_train.shape, X_test.shape, Y_train.shape, Y_test.shape)
     print(samples, features, classes)
