@@ -193,26 +193,26 @@ val_dataset = ClassifierDataset(torch.from_numpy(X).float(), torch.from_numpy(Y)
 test_dataset = ClassifierDataset(torch.from_numpy(X_test).float(), torch.from_numpy(Y_test).long())
 
 class2idx = {
-    1:0,
-    2:1,
-    3:2,
-    4:3,
-    5:4,
-    6:5,
-    7:6,
-    8:7,
-    9:8,
-    10:9,
-    11:10,
-    12:11,
-    13:12,
-    14:13,
-    15:14,
-    16:15
+    1: 0,
+    2: 1,
+    3: 2,
+    4: 3,
+    5: 4,
+    6: 5,
+    7: 6,
+    8: 7,
+    9: 8,
+    10: 9,
+    11: 10,
+    12: 11,
+    13: 12,
+    14: 13,
+    15: 14,
+    16: 15
 }
 
 idx2class = {v: k for k, v in class2idx.items()}
-#df['quality'].replace(class2idx, inplace=True)
+# df['quality'].replace(class2idx, inplace=True)
 
 
 target_list = []
@@ -234,8 +234,8 @@ weighted_sampler = WeightedRandomSampler(
 
 # This is where it starts
 EPOCHS = 300
-BATCH_SIZE = 1
-LEARNING_RATE = 0.0007
+BATCH_SIZE = 128
+LEARNING_RATE = 0.1
 NUM_SAMPLES, NUM_FEATURES = X_train.shape
 NUM_CLASSES = np.unique(Y).size
 
@@ -329,7 +329,7 @@ with torch.no_grad():
     for X_batch, _ in test_loader:
         X_batch = X_batch.to(device)
         y_test_pred = model(X_batch)
-        _, y_pred_tags = torch.max(y_test_pred, dim = 1)
+        _, y_pred_tags = torch.max(y_test_pred, dim=1)
         y_pred_list.append(y_pred_tags.cpu().numpy())
         # y_pred_list = [a.squeeze().tolist() for a in y_pred_list]
 
