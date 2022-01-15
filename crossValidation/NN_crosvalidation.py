@@ -37,7 +37,9 @@ df = pd.read_pickle("DataFrame.pkl")
 
 coordCombination=["x","y","z"]
 
-coordCombination=["y","z"]
+
+#try other combinations if you please
+#coordCombination=["y","z"]
 
 
 X,Y=pickCoordinates(df, coordCombination)
