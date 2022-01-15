@@ -234,8 +234,8 @@ weighted_sampler = WeightedRandomSampler(
 
 # This is where it starts
 EPOCHS = 300
-BATCH_SIZE = 1
-LEARNING_RATE = 0.0007
+BATCH_SIZE = 128
+LEARNING_RATE = 0.1
 NUM_SAMPLES, NUM_FEATURES = X_train.shape
 NUM_CLASSES = np.unique(Y).size
 
