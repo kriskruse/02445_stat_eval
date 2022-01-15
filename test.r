@@ -7,7 +7,7 @@ library(rgl)
 
 
 ############### data load
-load(file = "fixedarmdata.RData")
+armdata <- get(load(file = "fixedarmdata.RData"))
 df <- read.csv("Dataframefile")
 df = subset(df, select = -c(X) )
 
@@ -78,11 +78,45 @@ for (x in 1:16) {
 
 
 
+resave <- function(file){
+  e <- new.env(parent = emptyenv())
+  load(file, envir = e)
+  objs <- ls(envir = e, all.names = TRUE)
+  for(obj in objs) {
+    .x <- get(obj, envir =e)
+    message(sprintf('Saving %s as %s.csv', obj,obj) )
+    write.csv(.x, file = paste0(obj, '.csv'))
+  }
+}
+
+  resave('fixedarmdata.RData')
 
 
 
+tib <- tibble(armdata)  %>% 
+      unnest_wider(armdata)
+
+df <- as.data.frame(do.call(rbind, lapply(armdata, as.data.frame)))
+
+f <- unlist(unlist(unlist(unlist(armdata))))
+f1 <- unlist(armdata, recursive = FALSE)
+f2 <- unlist(f1, recursive = FALSE)
+f3 <- unlist(f2, recursive = FALSE)
+
+f <- armdata[[16]][[5]][[7]]
+f
+
+f2[1][[1]][2,]
+f3[1]
+f3[2]
 
 
+write.csv(f1,"armdata_fixed.csv", row.names = FALSE)
+
+
+f1[1]
+length(f1[1])
+armdata[[2]][[2]][[2]][2,]
 
 
 
