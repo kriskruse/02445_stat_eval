@@ -6,7 +6,7 @@ Created on Fri Jan 14 18:34:08 2022
 """
 
 import numpy as np
-import pyreadr
+#import pyreadr
 import pandas as pd
 import statistics
 from statistics import mode
