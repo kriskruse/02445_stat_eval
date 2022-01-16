@@ -24,22 +24,27 @@ from sklearn.model_selection import train_test_split,StratifiedKFold
 from sklearn.metrics import confusion_matrix, classification_report
 
 from funcsAndClasses import get_class_distribution,ClassifierDataset,MulticlassClassification,multi_acc,pickCoordinates
-#input to function:
-numFolds = 5    
     
-    
-def KfoldNN(X,Y,EPOCHS,random_state,device):
+def KfoldNN(X,Y,numFolds,EPOCHS,random_state,device):
     
     kf = StratifiedKFold(numFolds, shuffle=True, random_state=random_state)
     
     predictions=[]
     trueVals=[]
+    trainIndex=[]
+    testIndex=[]
     
     fold=0
     for train, test in kf.split(X,Y):  
         fold+=1
         
+        
+        
+        trainIndex.extend(train)
+        testIndex.extend(test)
+        
         #noticed that its not shuffled in the batches, so hereby shuffling the train indices
+        
         np.random.shuffle(train)
         print(f"Fold #{fold}")       
         X_train = X[train]
@@ -205,6 +210,6 @@ def KfoldNN(X,Y,EPOCHS,random_state,device):
         predictions.append([arr[0] for arr in y_pred_list])
         trueVals.append(Y_test)
         
-    return predictions,trueVals
+    return predictions,trueVals,trainIndex,testIndex
         
         
