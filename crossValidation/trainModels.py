@@ -29,7 +29,7 @@ torch.manual_seed(seed)
 random.seed(0)
 os.environ['PYTHONHASHSEED'] = str(seed)
 
-device = "cuda" if torch.cuda.is_available() else "cpu"
+device = "cpu"
 print("Device : {}".format(device))
 
 
