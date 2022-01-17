@@ -214,7 +214,7 @@
 0,"['xAUC', 'zAUC', 'zMax', 'zMaxXValue']",10000,0.4859375,0.45625,3
 0,"['xAUC', 'zAUC', 'zMax', 'zMaxXValue']",10000,0.50625,0.403125,4
 0,"['xAUC', 'zAUC', 'zMax', 'zMaxXValue']",10000,0.46875,0.478125,5
-0,"['xAUC', 'zAUC', 'zMaxIdx', 'zMaxXValue']",10000,0.47734375,0.409375,1
+0,"['xAUC', 'zAUC', 'zMaxIdx', 'zMaxXValue']",10000,0.4765625,0.409375,1
 0,"['xAUC', 'zAUC', 'zMaxIdx', 'zMaxXValue']",10000,0.45859375,0.484375,2
 0,"['xAUC', 'zAUC', 'zMaxIdx', 'zMaxXValue']",10000,0.46875,0.475,3
 0,"['xAUC', 'zAUC', 'zMaxIdx', 'zMaxXValue']",10000,0.47890625,0.38125,4
@@ -269,11 +269,11 @@
 0,"['xAUC', 'yAUC', 'zMax', 'zMaxIdx', 'zMaxXValue']",10000,0.50078125,0.5125,3
 0,"['xAUC', 'yAUC', 'zMax', 'zMaxIdx', 'zMaxXValue']",10000,0.52109375,0.44375,4
 0,"['xAUC', 'yAUC', 'zMax', 'zMaxIdx', 'zMaxXValue']",10000,0.5046875,0.5125,5
-0,"['xAUC', 'zAUC', 'zMax', 'zMaxIdx', 'zMaxXValue']",10000,0.5125,0.434375,1
+0,"['xAUC', 'zAUC', 'zMax', 'zMaxIdx', 'zMaxXValue']",10000,0.51171875,0.434375,1
 0,"['xAUC', 'zAUC', 'zMax', 'zMaxIdx', 'zMaxXValue']",10000,0.4765625,0.534375,2
 0,"['xAUC', 'zAUC', 'zMax', 'zMaxIdx', 'zMaxXValue']",10000,0.48671875,0.4625,3
 0,"['xAUC', 'zAUC', 'zMax', 'zMaxIdx', 'zMaxXValue']",10000,0.50546875,0.39375,4
-0,"['xAUC', 'zAUC', 'zMax', 'zMaxIdx', 'zMaxXValue']",10000,0.4859375,0.48125,5
+0,"['xAUC', 'zAUC', 'zMax', 'zMaxIdx', 'zMaxXValue']",10000,0.48671875,0.48125,5
 0,"['yAUC', 'zAUC', 'zMax', 'zMaxIdx', 'zMaxXValue']",10000,0.52265625,0.453125,1
 0,"['yAUC', 'zAUC', 'zMax', 'zMaxIdx', 'zMaxXValue']",10000,0.50390625,0.51875,2
 0,"['yAUC', 'zAUC', 'zMax', 'zMaxIdx', 'zMaxXValue']",10000,0.49453125,0.5,3
@@ -281,6 +281,6 @@
 0,"['yAUC', 'zAUC', 'zMax', 'zMaxIdx', 'zMaxXValue']",10000,0.49140625,0.4875,5
 0,"['xAUC', 'yAUC', 'zAUC', 'zMax', 'zMaxIdx', 'zMaxXValue']",10000,0.528125,0.4625,1
 0,"['xAUC', 'yAUC', 'zAUC', 'zMax', 'zMaxIdx', 'zMaxXValue']",10000,0.503125,0.50625,2
-0,"['xAUC', 'yAUC', 'zAUC', 'zMax', 'zMaxIdx', 'zMaxXValue']",10000,0.503125,0.5,3
+0,"['xAUC', 'yAUC', 'zAUC', 'zMax', 'zMaxIdx', 'zMaxXValue']",10000,0.50234375,0.5,3
 0,"['xAUC', 'yAUC', 'zAUC', 'zMax', 'zMaxIdx', 'zMaxXValue']",10000,0.525,0.434375,4
 0,"['xAUC', 'yAUC', 'zAUC', 'zMax', 'zMaxIdx', 'zMaxXValue']",10000,0.50390625,0.503125,5

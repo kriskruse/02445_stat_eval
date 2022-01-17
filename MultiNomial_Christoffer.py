@@ -16,6 +16,9 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 import sklearn.linear_model as lm
 from scipy import stats
+from sklearn.metrics import confusion_matrix
+import matplotlib.pyplot as plt
+import seaborn as sns
 from sklearn.preprocessing import PolynomialFeatures
 
 
@@ -158,3 +161,12 @@ for lam in test_lst:
     print(f"train score {model2.score(X_train, Y_train)}")
     print(f"test score {model2.score(X_test, Y_test)}")
 
+    # Plot a confus matrix
+    conMatrix = confusion_matrix(Y_test, y_pred2)
+    df_cm = pd.DataFrame(conMatrix, index=[i for i in range(0, 4)],
+                         columns=[i for i in range(0, 4)])
+    plt.figure(figsize=(10, 7))
+    heat = sns.heatmap(df_cm, annot=True, xticklabels=True, yticklabels=True)
+    heat.set(xlabel='True value', ylabel='Predicted value', title="Multinomial Logistic regression")
+    #plt.show()
+    plt.savefig(f"Confusionmatrix_Multinomial_LR_Simpler2", dpi=450)
