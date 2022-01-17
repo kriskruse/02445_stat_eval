@@ -33,8 +33,8 @@ for (comb in 1:ncol(combinations)){
   testResult=cochrans.q(cbind(boolMatrix[pair[1]],boolMatrix[pair[2]]))
   print(testResult)
   p=testResult@PVal
-  p=as.list(strsplit(p, '\\s+')[[1]])[p[length(p)] ]  
-  #print(p)
+  #p=as.list(strsplit(p, '\\s+')[[1]])[p[length(p)] ]  
+  print(p)
   pvals=c(pvals,p)
 } 
 options(scipen = 0)
