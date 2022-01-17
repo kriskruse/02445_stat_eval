@@ -108,7 +108,9 @@ def KfoldMultiNomial(df, numFolds, random_state, lamda):
 
             predictions.extend(y_pred)
             trueVals.extend(Y_test)
-            temp = pd.DataFrame({'attributes': attributes, 'Lambda': lamda, 'score_train': score_train, 'score_test': score_test, 'fold': fold})
+            att = str(attributes)
+            dic_result = {'attributes': att, 'Lambda': [lamda], 'score_train': [score_train], 'score_test': [score_test], 'fold': [fold]}
+            temp = pd.DataFrame(dic_result)
             df_results = df_results.append(temp)
 
     return df_results
