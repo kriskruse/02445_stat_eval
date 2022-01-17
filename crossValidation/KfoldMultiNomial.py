@@ -41,7 +41,8 @@ def KfoldMultiNomial(df,numFolds,random_state,lamda):
     #Think we should use some feature selection algorithm here. Would be nice
     #Choose attributes,
     #Following three attributes seems to peform the best for overall classification
-    attributes=["yAUC","zMax","zMaxXValue"]
+    #attributes=["yAUC","zMax","zMaxXValue"]
+    attributes=["xAUC", "zAUC", "zMax", "zMaxIdx", "zMaxXValue"]
     print("Training")
     
     #attributes=["xAUC","yAUC","zAUC","zMax","zMaxIdx","zMaxXValue"]

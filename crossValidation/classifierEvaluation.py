@@ -21,7 +21,7 @@ for i in range(len(preds)) :
     plt.figure(figsize=(10, 7))
     heat = sns.heatmap(df_cm, annot=True, xticklabels=True, yticklabels=True)
     heat.set(xlabel='True value', ylabel='Predicted value', title=names[i])
-    #plt.savefig(f"Confusionmatrix_{names[i]}", dpi=450)
+    plt.savefig(f"Confusionmatrix_{names[i]}", dpi=450)
 
     
 
@@ -108,9 +108,6 @@ boolearnvals,correctedpVals=fdrcorrection(McNemarTests.iloc[0])
 McNemarTests.loc[3]=correctedpVals
 McNemarTests.loc[4]=[bool(val) for val in boolearnvals]
 
-#%%
-McNemarTests.loc[1]=correctedpVals
-McNemarTests.loc[2]=[bool(val) for val in boolearnvals]
 #%%
 
 McNemarTestsTransposed = McNemarTests.T
