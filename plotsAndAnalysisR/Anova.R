@@ -111,7 +111,7 @@ anova(Lz)
 drop1(Lz, test = "F")
 
 #hist of residuals
-hist(resid(Ly))
+hist(resid(Lz))
 #qqplot of residuals
 plot(Lz,2)
 # Run Shapiro-Wilk test

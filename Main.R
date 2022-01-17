@@ -104,11 +104,13 @@ L <- lm(mean_xauc ~ experiment + person, data = df_mean_auc)
 summary(L)
 anova(L)
 drop1(L, test = "F")
+
 # trying the similar aov() function, that should do the anova directly
 L_aov <- aov(mean_xauc ~ experiment + person, data = df_mean_auc)
 anova(L_aov)
 drop1(L_aov, test = "F")
 # gives the same result as above
+
 
 # looking for normal distribution
 residuals <- resid(L_aov)
