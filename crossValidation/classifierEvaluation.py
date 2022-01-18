@@ -7,8 +7,6 @@ df = pd.read_csv('Classifications_Ordered.csv')
 
 #confusion matrix for each of the classifiers
 
-df = pd.read_csv("Classifications_Ordered.csv")
-
 trueVals = df["TrueVals"]
 preds = [df["NNxyz"], df["NNxy"], df["NNxz"], df["NNyz"], df["MultiNomial"]]
 names = ["NNxyz", "NNxy", "NNxz", "NNyz", "MultiNomial"]
