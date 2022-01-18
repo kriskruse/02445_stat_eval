@@ -111,25 +111,25 @@ attributes=["xAUC","yAUC","zAUC","zMax","zMaxXValue"]
 #change between mean values or all values
 
 #mean values
-X=np.array(dfMean[attributes])
+#X=np.array(dfMean[attributes])
 
 #standardize
-X = stats.zscore(X)
+#X = stats.zscore(X)
 
 #change if wheter we want classifcation on exerpiment or size classes
 #Y=np.array(dfMean["experiment"])
 
-Y=np.array(dfMean["size"])
+#Y=np.array(dfMean["size"])
 
 
 #all values
 
-# X =np.array(dfArea[attributes])
+X =np.array(dfArea[attributes])
 # X = stats.zscore(X)
 
 # #change if wheter we want classifcation on exerpiment or size classes
 # Y=np.array(dfArea["experiment"])
-# #Y=np.array(dfArea["size"])
+Y=np.array(dfArea["size"])
 
 
 
@@ -148,7 +148,7 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, Y, train_size=0.8, random
 # =============================================================================
 #%%
 # note: 0.01 seems to be the best C value, of the tested
-test_lst = [0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000, 100000]
+test_lst = [1000]
 #lam = 0.01
 for lam in test_lst:  
 

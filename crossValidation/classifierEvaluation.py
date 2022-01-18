@@ -130,3 +130,12 @@ McNemarTestsSorted["Better model"]=betterModel
 columns_titles = ["p-value","adjusted P-value","Reject H0","thetaHat","CI","Better model"]
 McNemarTestsSorted=McNemarTestsSorted.reindex(columns=columns_titles)
 McNemarTestsSorted.to_csv('McNemarTable.csv', index=True)
+
+#%%
+#calculate accuracies
+
+for model in df.iloc[: , :5]  :
+    acc=sum(df[model]==df["TrueVals"])/len(df[model])
+    print(f"The accuracy of model {model} is {acc}")
+
+
