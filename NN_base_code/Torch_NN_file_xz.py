@@ -147,7 +147,7 @@ os.environ['PYTHONHASHSEED'] = str(seed)
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print("Device : {}".format(device))
 
-df = pd.read_pickle("DataFrame.pkl")
+df = pd.read_pickle("../DataFrame.pkl")
 
 # for col in df.columns:
 # print(col)
@@ -155,7 +155,7 @@ df = pd.read_pickle("DataFrame.pkl")
 le = LabelEncoder()
 Y = le.fit_transform(df["experiment"])
 Y = np.sort(np.array(Y))
-X = np.array([df["x"], df["y"]])
+X = np.array([df["x"], df["z"]])
 X = np.transpose(X)
 
 val = np.array([])

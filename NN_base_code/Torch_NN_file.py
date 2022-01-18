@@ -147,7 +147,7 @@ os.environ['PYTHONHASHSEED'] = str(seed)
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print("Device : {}".format(device))
 
-df = pd.read_pickle("DataFrame.pkl")
+df = pd.read_pickle("../DataFrame.pkl")
 
 # for col in df.columns:
 # print(col)
