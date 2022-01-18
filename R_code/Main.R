@@ -13,20 +13,6 @@ df <- read.csv("Dataframefile")
 df = subset(df, select = -c(X) )
 ## access with armdata
 
-# Unpack the Experiments into their own lists
-# and add the person numbers to the data
-i = 1
-pnum = c(paste0("per",1:10))
-for (item in armdata){
-  names(item) = pnum
-  assign(paste0("eks", i), item)
-  i = i + 1
-}
-# we now have the data as experiment individual lists, with "eksx" being the specific experimenter
-# to access a specific person from a experiment, use example "eks1$per1" for 
-# experiment 1 person 1, for each person there is 10 repetitions, unlabeled
-# for these access them with "eks1$per1[1]" for rep 1
-
 # Find mean line for experiment
 
 xlist = c()
@@ -46,10 +32,6 @@ y_mean = rowMeans(array(ylist, dim = c(100,100)))
 z_mean = rowMeans(array(zlist, dim = c(100,100)))
 
 xyz_mean = array(c(x_mean,y_mean,z_mean), dim = c(100,3))
-
-
-
-
 
 
 ### Data processing for ANOVA
