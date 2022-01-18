@@ -4,6 +4,9 @@ import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 seed = 42069
 
@@ -100,4 +103,13 @@ print(f"lambda value: {lam}")
 print(f"train score {model3.score(X_train, Y_train)}")
 print(f"test score {model3.score(X_test, Y_test)}")
 
+
+conMatrix = confusion_matrix(Y_test, y_pred3)
+df_cm = pd.DataFrame(conMatrix, index=[i for i in range(0, 6)],
+                     columns=[i for i in range(0, 6)])
+plt.figure(figsize=(10, 7))
+heat = sns.heatmap(df_cm, annot=True, xticklabels=True, yticklabels=True)
+heat.set(xlabel='True value', ylabel='Predicted value', title="Multinomial Logistic regression")
+plt.show()
+#plt.savefig(f"Confusionmatrix_Multinomial_LR_Simpler", dpi=450)
 

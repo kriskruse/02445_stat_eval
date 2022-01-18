@@ -6,10 +6,12 @@ import pandas as pd
 import itertools as it
 
 from sklearn.linear_model import LogisticRegression
-
+from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import StratifiedKFold
 # import sklearn.linear_model as lm
 from scipy import stats
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # from sklearn.preprocessing import PolynomialFeatures
 # from sklearn.metrics import confusion_matrix, classification_report
@@ -59,10 +61,11 @@ def KfoldMultiNomial(df, numFolds, random_state, lamda):
     attributes_comblist = combinations_att(attributes)
     print(f"We going over all of these,"
           f"{attributes_comblist}")
-
+    best_att = [["xAUC", "zAUC", "zMax", "zMaxIdx", "zMaxXValue"]]
     df_results = pd.DataFrame()
 
-    for attributes in attributes_comblist:
+    #for attributes in attributes_comblist:
+    for attributes in best_att:
         attributes = list(attributes)
         X = np.array(dfArea[attributes])
         X = stats.zscore(X)
@@ -113,8 +116,24 @@ def KfoldMultiNomial(df, numFolds, random_state, lamda):
             temp = pd.DataFrame(dic_result)
             df_results = df_results.append(temp)
 
+            # Plot the predictions to a heatmap confusionmatrix
+            conMatrix = confusion_matrix(trueVals, predictions)
+            df_cm = pd.DataFrame(conMatrix, index=[i for i in range(1, 17)],
+                                 columns=[i for i in range(1, 17)])
+            plt.figure(figsize=(10, 7))
+            heat = sns.heatmap(df_cm, annot=True, xticklabels=True, yticklabels=True)
+            heat.set(xlabel='True value', ylabel='Predicted value', title="Multinomial Logistic regression")
+            plt.show()
+            #plt.savefig(f"Confusionmatrix_Multinomial_LR_{fold}", dpi=450)
+
+
+
+
+
     return df_results
 
 
 df_result = KfoldMultiNomial(df, numFolds, random_state, lamda)
-df_result.to_csv("multinomial_att_test.csv")
+
+# if you want to save to file, uncomment. This overwrites
+#df_result.to_csv("multinomial_att_test.csv")
