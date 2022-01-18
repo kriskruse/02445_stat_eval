@@ -112,8 +112,8 @@ multiNomialPredictions,trueVals,trainIndex,testIndex=KfoldMultiNomial(df,numFold
 
 predictionClassifiers.append(multiNomialPredictions)
 trueValsList.append(trueVals)
-trainIndices.append(trainIDX)
-testIndices.append(testIDX)
+trainIndices.append(trainIndex)
+testIndices.append(testIndex)
 
 #add the classifications of the multinomial to the dataframe.
 classificationsUnordered["MultiNomial"]=multiNomialPredictions
