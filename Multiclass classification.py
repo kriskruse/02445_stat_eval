@@ -10,12 +10,13 @@ import seaborn as sns
 
 seed = 42069
 
-
+# read the data
 df = pd.read_pickle("DataFrame.pkl")
 
 # for col in df.columns:
 # print(col)
 
+# label encode the
 le = LabelEncoder()
 Y = le.fit_transform(df["experiment"])
 Y = np.sort(np.array(Y))
@@ -36,10 +37,7 @@ print(f"Datatype X: {X.dtype}")
 print(f"Shape of Y: {np.shape(Y)}")
 print(f"Datatype Y: {Y.dtype}")
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, train_size=0.8, random_state=seed)
-# Dosnt seem to be able to run onehot encoded stuff with the LR models
 
-# yhot_train = np_utils.to_categorical(Y_train)
-# yhot_test = np_utils.to_categorical(Y_test)
 
 # note: 0.01 seems to be the best C value, of the tested
 # test_lst = [0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000]
